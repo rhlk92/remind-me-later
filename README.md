@@ -1,6 +1,6 @@
 # Remind me later
 
-A small reminder api which takes email address or mobile number or both and sets a reminder with a message. The api then reminds over their preferred channel of notification with the message.
+    A small reminder api which takes email address or mobile number or both and sets a reminder with a message. The api then reminds over their preferred channel of notification with the message.
 
 ## Run it!
 
