@@ -1,19 +1,16 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import ReminderSerializer
 
 
-@api_view(['POST'])
-def reminder_list_api(request):
+class ReminderList(APIView):
     """
     create a new reminder.
     """
-    if request.method == 'POST':
+    def post(self, request, format=None):
         serializer = ReminderSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors,
-                            status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
