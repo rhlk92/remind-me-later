@@ -4,10 +4,6 @@ from .models import Reminder
 from .serializers import ReminderSerializer
 
 
-class ReminderList(mixins.CreateModelMixin,
-                   generics.GenericAPIView):
+class ReminderList(generics.CreateAPIView):
         queryset = Reminder.objects.all()
         serializer_class = ReminderSerializer
-
-        def post(self, request, *args, **kwargs):
-            return self.create(request, *args, **kwargs)
