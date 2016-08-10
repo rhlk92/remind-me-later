@@ -1,9 +1,11 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import viewsets
+from rest_framework import mixins
 from .models import Reminder
 from .serializers import ReminderSerializer
 
 
-class ReminderViewSet(ModelViewSet):
+class ReminderViewSet(mixins.CreateModelMixin,
+                      viewsets.GenericViewSet):
     """
     create a new reminder.
     """
