@@ -7,5 +7,5 @@ router.register(r'reminders', ReminderViewSet)
 
 urlpatterns = patterns(
     '',
-    url('^api/', include(router.urls)),
+    url(r'^', include(router.urls)),
 )
