@@ -10,7 +10,7 @@ class ReminderTests(APITestCase):
         """
         create a new reminder.
         """
-        url = reverse('reminder_list_api')
+        url = '/api/reminders/'
         data = {"medium": "email", "phone": "0123456789",
                 "datetime": "2016-07-27 00:00:00",
                 "message": "this is new messsage", "email": "rhlk92@gmail.com"
