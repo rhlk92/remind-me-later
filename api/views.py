@@ -1,19 +1,13 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework import mixins
+from rest_framework import generics
+from .models import Reminder
 from .serializers import ReminderSerializer
 
 
-@api_view(['POST'])
-def reminder_list_api(request):
-    """
-    create a new reminder.
-    """
-    if request.method == 'POST':
-        serializer = ReminderSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors,
-                            status=status.HTTP_400_BAD_REQUEST)
+class ReminderList(mixins.CreateModelMixin,
+                   generics.GenericAPIView):
+        queryset = Reminder.objects.all()
+        serializer_class = ReminderSerializer
+
+        def post(self, request, *args, **kwargs):
+            return self.create(request, *args, **kwargs)
